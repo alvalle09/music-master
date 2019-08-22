@@ -6,7 +6,13 @@ class App extends Component {
 
   updateArtistQuery = event => {
     console.log('event.target.value', event.target.value);
+    this.setState({ artistQuery: event.target.value });
   }
+
+  searchArtist = () => {
+    console.log('this state', this.state);
+  }
+
 
   render() {
     return (
@@ -16,11 +22,10 @@ class App extends Component {
           onChange={this.updateArtistQuery} 
           placeholder='Search for an Artist' 
         />
-        <button>Search</button>        
+        <button onClick={this.searchArtist}>Search</button>      
       </div>
     );
   }
 }
-
 
 export default App;
