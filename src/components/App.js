@@ -5,7 +5,7 @@ class App extends Component {
   state = { artistQuery: '' };
 
   updateArtistQuery = event => {
-    console.log('event', event);
+    console.log('event.target.value', event.target.value);
   }
 
   render() {
