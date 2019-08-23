@@ -9,6 +9,12 @@ class App extends Component {
     this.setState({ artistQuery: event.target.value });
   }
 
+  handleKeyPress = event => {
+    if (event.key === 'Enter') {
+      this.searchArtist();
+    }
+  }
+
   searchArtist = () => {
     console.log('this state', this.state);
   }
@@ -20,6 +26,7 @@ class App extends Component {
         <h2>Music Masters</h2>
         <input 
           onChange={this.updateArtistQuery} 
+          onKeyPress={this.handleKeyPress}
           placeholder='Search for an Artist' 
         />
         <button onClick={this.searchArtist}>Search</button>      
