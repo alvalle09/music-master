@@ -10,7 +10,7 @@ class App extends Component {
             tracks: [] };
 
   updateArtistQuery = event => {
-    console.log('event.target.value', event.target.value);
+    //console.log('event.target.value', event.target.value);
     this.setState({ artistQuery: event.target.value });
   }
 
@@ -21,23 +21,23 @@ class App extends Component {
   }
 
   searchArtist = () => {
-    console.log('this state', this.state);
+    //console.log('this state', this.state);
     //use backticks for interpolation
     fetch(`${API_ADDRESS}/artist/${this.state.artistQuery}`)
       .then(response => response.json())
       .then(json => {
-        console.log('json', json);
+        //console.log('json', json);
         // only return top tracks if artist returns results
         if (json.artists.total > 0) {
           const artist = json.artists.items[0];
+          //console.log('artist', artist);
 
-          console.log('artist', artist);
           // this is equivalent to { artist: artist }
           this.setState({ artist });
 
           fetch(`${API_ADDRESS}/artist/${artist.id}/top-tracks`)
             .then(response => response.json())
-            .then(json => console.log('tracks json', json))
+            .then(json =>this.setState({ tracks: json.tracks }))
             .catch(error => alert(error.message));
         }
       })
@@ -46,6 +46,8 @@ class App extends Component {
 
 
   render() {
+    console.log('this.state: ', this.state);
+
     return (
       <div>
         <h2>Music Masters</h2>
