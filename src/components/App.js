@@ -5,7 +5,9 @@ const API_ADDRESS = 'https://spotify-api-wrapper.appspot.com';
 
 
 class App extends Component {
-  state = { artistQuery: '' };
+  state = { artistQuery: '',
+            artist: null,
+            tracks: [] };
 
   updateArtistQuery = event => {
     console.log('event.target.value', event.target.value);
@@ -25,7 +27,21 @@ class App extends Component {
       .then(response => response.json())
       .then(json => {
         console.log('json', json);
-      });
+        // only return top tracks if artist returns results
+        if (json.artists.total > 0) {
+          const artist = json.artists.items[0];
+
+          console.log('artist', artist);
+          // this is equivalent to { artist: artist }
+          this.setState({ artist });
+
+          fetch(`${API_ADDRESS}/artist/${artist.id}/top-tracks`)
+            .then(response => response.json())
+            .then(json => console.log('tracks json', json))
+            .catch(error => alert(error.message));
+        }
+      })
+      .catch(error => alert(error.message));
   }
 
 
