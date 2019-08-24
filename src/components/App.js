@@ -1,6 +1,9 @@
 
 import React, { Component } from "react";
 
+const API_ADDRESS = 'https://spotify-api-wrapper.appspot.com';
+
+
 class App extends Component {
   state = { artistQuery: '' };
 
@@ -17,6 +20,12 @@ class App extends Component {
 
   searchArtist = () => {
     console.log('this state', this.state);
+    //use backticks for interpolation
+    fetch(`${API_ADDRESS}/artist/${this.state.artistQuery}`)
+      .then(response => response.json())
+      .then(json => {
+        console.log('json', json);
+      });
   }
 
 
