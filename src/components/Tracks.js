@@ -4,6 +4,8 @@ class Tracks extends Component {
 
     playAudio = previewURL => {
         const audio = new Audio(previewURL);
+
+        audio.play();
     }
 
 
@@ -17,10 +19,9 @@ class Tracks extends Component {
           const { id, name, album, preview_url } = track;
 
           return (
-            <div key={id}>
-              <img src={album.images[0].url} alt="track-image" />
+            <div key={id} onClick={this.playAudio(preview_url)}>
+              <img src={album.images[0].url} alt='track-image' />
               <p>{name}</p>
-
             </div>
           );
         })}
