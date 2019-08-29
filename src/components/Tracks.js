@@ -4,15 +4,15 @@ class Tracks extends Component {
     state = { playing: false, audio: null };
 
 
-    playAudio = previewURL => {
-        const audio = new Audio(previewURL);
+    playAudio = previewUrl => () => {
+        const audio = new Audio(previewUrl);
 
         if (!this.state.playing) {
           audio.play();
           this.setState({ playing: true, audio });
         } else {
           this.state.audio.pause();
-          this.setState({ playin: false });
+          this.setState({ playing: false });
         }
     }
     
