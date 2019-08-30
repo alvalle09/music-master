@@ -11,9 +11,10 @@ class App extends Component {
     tracks: []
   };
 
-  searchArtist = () => {
+  // pass artistQuery as parm instead of state
+  searchArtist = artistQuery => {
     // fetch artist data from spotify api wrapper
-    fetch(`${API_ADDRESS}/artist/${this.state.artistQuery}`)
+    fetch(`${API_ADDRESS}/artist/${artistQuery}`)
       .then(response => response.json())
       .then(json => {
         // only return top tracks if artist returns results
@@ -38,7 +39,7 @@ class App extends Component {
     return (
       <div>
         <h2>Music Masters</h2>
-        <Search />
+        <Search searchArtist={this.searchArtist} />
         <Artist artist={this.state.artist} />
         <Tracks tracks={this.state.tracks} />
       </div>
