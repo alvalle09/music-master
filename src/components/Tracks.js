@@ -12,7 +12,6 @@ class Tracks extends Component {
           this.setState({ playing: true, audio, playingPreviewUrl: previewUrl });
         } else {
           this.state.audio.pause();
-
           if (this.state.playingPreviewUrl === previewUrl) {
             this.setState({ playing: false });
           }
@@ -46,3 +45,4 @@ class Tracks extends Component {
 }
 
 export default Tracks;
+
