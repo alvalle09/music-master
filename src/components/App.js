@@ -11,16 +11,6 @@ class App extends Component {
     tracks: []
   };
 
-  updateArtistQuery = event => {
-    this.setState({ artistQuery: event.target.value });
-  };
-
-  handleKeyPress = event => {
-    if (event.key === "Enter") {
-      this.searchArtist();
-    }
-  };
-
   searchArtist = () => {
     // fetch artist data from spotify api wrapper
     fetch(`${API_ADDRESS}/artist/${this.state.artistQuery}`)
@@ -48,12 +38,7 @@ class App extends Component {
     return (
       <div>
         <h2>Music Masters</h2>
-        <input
-          onChange={this.updateArtistQuery}
-          onKeyPress={this.handleKeyPress}
-          placeholder="Search for an Artist"
-        />
-        <button onClick={this.searchArtist}>Search</button>
+        
         <Artist artist={this.state.artist} />
         <Tracks tracks={this.state.tracks} />
       </div>
