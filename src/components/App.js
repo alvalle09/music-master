@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Search from './Search';
 import Artist from "./Artist";
 import Tracks from './Tracks';
 
@@ -6,7 +7,6 @@ const API_ADDRESS = "https://spotify-api-wrapper.appspot.com";
 
 class App extends Component {
   state = {
-    artistQuery: "",
     artist: null,
     tracks: []
   };
@@ -38,7 +38,7 @@ class App extends Component {
     return (
       <div>
         <h2>Music Masters</h2>
-        
+        <Search />
         <Artist artist={this.state.artist} />
         <Tracks tracks={this.state.tracks} />
       </div>
