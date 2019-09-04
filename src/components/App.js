@@ -11,7 +11,12 @@ class App extends Component {
     tracks: []
   };
 
-  // pass artistQuery as parm instead of state
+  componentDidMount() {
+    this.searchArtist('The Beatles');
+    
+  }
+
+
   searchArtist = artistQuery => {
     // fetch artist data from spotify api wrapper
     fetch(`${API_ADDRESS}/artist/${artistQuery}`)

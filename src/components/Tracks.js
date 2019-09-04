@@ -22,6 +22,15 @@ class Tracks extends Component {
         }
     }
     
+    trackIcon = track => {
+      if (
+        this.state.playing && 
+        this.state.playingPreviewUrl === track.previewUrl
+      ) {
+        return <span>||</span>;
+      }
+      return <span>&#9654;</span>
+    }
 
   render() {
     // destructure the props object into tracks object
@@ -43,7 +52,8 @@ class Tracks extends Component {
                 alt='track-image' 
                 className='track-image'
                 />
-              <p>{name}</p>
+              <p className='track-text'>{name}</p>
+              <p className='track-icon'>{this.trackIcon(track)}</p>
             </div>
           );
         })}
