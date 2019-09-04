@@ -23,11 +23,15 @@ class Tracks extends Component {
     }
     
     trackIcon = track => {
+      if (!track.preview_url) {
+        return <spa>Preview N/A</spa>
+      }
+
       if (
         this.state.playing && 
-        this.state.playingPreviewUrl === track.previewUrl
+        this.state.playingPreviewUrl === track.preview_url
       ) {
-        return <span>||</span>;
+        return <span>⏸️</span>;
       }
       return <span>&#9654;</span>
     }
